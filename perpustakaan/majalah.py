@@ -1,4 +1,4 @@
-# dikerjakan oleh: Vicko
+# dikerjakan oleh: Vincensius Vicko R.S (K3525042)
 # username: (pikoopikk)
 
 from perpustakaan.koleksi import Koleksi
