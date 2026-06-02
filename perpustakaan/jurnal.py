@@ -1,5 +1,5 @@
 # dikerjakan oeh: Wijang
-# username: pratama_putra
+# username: pratamaputra-pemula
 
 from perpustakaan.koleksi import Koleksi
 
