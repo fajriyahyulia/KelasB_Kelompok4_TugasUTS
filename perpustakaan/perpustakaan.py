@@ -1,4 +1,4 @@
-# dikerjakan oeh: Abid
+# dikerjakan oeh: Abid Satriyo Maulana (K3525045)
 # username: maurinho011
 
 from perpustakaan.koleksi import Koleksi
