@@ -10,12 +10,12 @@ Repositori  : KelasB_Kelompok4_TugasUTS
 
 | Nama | NIM | Branch |
 |------|-----|--------|
-| Fajriya (Ketua) | K3525005 | `main` |
-| Fatimah | - | `fatimah-koleksi` |
-| Rahma | - | `rahma-buku` |
-| Viko | - | `viko-majalah` |
-| Wijang | - | `wijang-jurnal` |
-| Abid | - | `abid-perpustakaan` |
+| Fajriyah Yulia Az Zahra | K3525005 | `main` |
+| Fatimah Az Zahra | K3525006 | `fatimah-koleksi` |
+| Riska Nur Rahmawati | K3525039 | `rahma-buku` |
+| Vincensius Vicko Riska S | K3525042 | `viko-majalah` |
+| Wijang Pratama Putra | K3525043 | `wijang-jurnal` |
+| Abid Satriyo Maulana | K3525045 | `abid-perpustakaan` |
 
 ---
 
