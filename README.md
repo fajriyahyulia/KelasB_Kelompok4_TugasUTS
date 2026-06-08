@@ -1,4 +1,5 @@
 # Aplikasi Perpustakaan
+
 Mata Kuliah : Pemrograman Berorientasi Objek  
 Kelas       : B  
 Kelompok    : 4  
@@ -8,14 +9,14 @@ Repositori  : KelasB_Kelompok4_TugasUTS
 
 ## Anggota Kelompok
 
-| Nama | NIM | Branch |
-|------|-----|--------|
-| Fajriyah Yulia Az Zahra | K3525005 | `main` |
-| Fatimah Az Zahra | K3525006 | `fatimah-koleksi` |
-| Riska Nur Rahmawati | K3525039 | `rahma-buku` |
-| Vincensius Vicko Riska S | K3525042 | `viko-majalah` |
-| Wijang Pratama Putra | K3525043 | `wijang-jurnal` |
-| Abid Satriyo Maulana | K3525045 | `abid-perpustakaan` |
+| Nama | NIM | Username | File |
+|------|-----|----------|------|
+| Fajriyah Yulia Az Zahra | K3525005 | fajriyahyulia | `main.py` |
+| Fatimah Az Zahra | K3525006 | fatimahzahrara | `koleksi.py` |
+| Riska Nur Rahmawati | K3525039 | riskarahmaa11 | `buku.py` |
+| Vincensius Vicko R.S | K3525042 | pikoopikk | `majalah.py` |
+| Wijang Pratama Putra | K3525043 | pratamaputra-pemula | `jurnal.py` |
+| Abid Satriyo Maulana | K3525045 | maurinho011 | `perpustakaan.py` |
 
 ---
 
@@ -33,6 +34,7 @@ Program mendukung tiga fitur utama yaitu menambah data koleksi, menghapus data k
 KelasB_Kelompok4_TugasUTS/
 ├── README.md
 └── perpustakaan/
+    ├── __init__.py
     ├── koleksi.py
     ├── buku.py
     ├── majalah.py
@@ -46,19 +48,19 @@ KelasB_Kelompok4_TugasUTS/
 ## Penjelasan Setiap File
 
 ### koleksi.py (Fatimah)
-Berisi abstract class `Koleksi` yang menjadi induk dari semua jenis koleksi. Class ini menyimpan atribut umum yaitu kode, judul, tahun, dan penerbit. Terdapat method `tampilkan_dasar()` untuk menampilkan atribut umum tersebut, serta abstract method `tampilkan()` yang wajib diimplementasikan oleh setiap subclass.
+Berisi abstract class `Koleksi` yang menjadi induk dari semua jenis koleksi. Menyimpan atribut umum yaitu kode, judul, tahun, dan penerbit. Terdapat method `tampilkan_dasar()` untuk menampilkan atribut umum, serta dua abstract method `tampilkan()` dan `get_jenis()` yang wajib diimplementasikan oleh setiap subclass.
 
 ### buku.py (Rahma)
-Berisi class `Buku` yang merupakan turunan dari `Koleksi`. Menambahkan atribut `pengarang` dan mengimplementasikan method `tampilkan()` sesuai kebutuhan data buku.
+Berisi class `Buku` turunan dari `Koleksi`. Menambahkan atribut `pengarang` dan mengimplementasikan method `tampilkan()` serta `get_jenis()` sesuai kebutuhan data buku.
 
 ### majalah.py (Viko)
-Berisi class `Majalah` yang merupakan turunan dari `Koleksi`. Menambahkan atribut `edisi` dan mengimplementasikan method `tampilkan()` sesuai kebutuhan data majalah.
+Berisi class `Majalah` turunan dari `Koleksi`. Menambahkan atribut `edisi` dan mengimplementasikan method `tampilkan()` serta `get_jenis()` sesuai kebutuhan data majalah.
 
 ### jurnal.py (Wijang)
-Berisi class `Jurnal` yang merupakan turunan dari `Koleksi`. Menambahkan atribut `bidang` dan `impact` lalu mengimplementasikan method `tampilkan()` sesuai kebutuhan data jurnal.
+Berisi class `Jurnal` turunan dari `Koleksi`. Menambahkan atribut `bidang` dan `impact` lalu mengimplementasikan method `tampilkan()` serta `get_jenis()` sesuai kebutuhan data jurnal.
 
 ### perpustakaan.py (Abid)
-Berisi class `Perpustakaan` yang mengelola seluruh data koleksi. Menyediakan tiga method utama yaitu `tambah()`, `hapus()`, dan `tampil_semua()`. Class ini hanya bergantung pada abstraksi `Koleksi`, bukan pada class konkret seperti Buku, Majalah, atau Jurnal secara langsung.
+Berisi class `Perpustakaan` yang mengelola seluruh data koleksi. Menyediakan tiga method utama yaitu `tambah()`, `hapus()`, dan `tampil_semua()`. Class ini bergantung pada abstraksi `Koleksi` dengan type hint `List[Koleksi]`, bukan pada class konkret seperti Buku, Majalah, atau Jurnal secara langsung.
 
 ### main.py (Fajriya)
 File utama yang menjalankan program. Berisi menu interaktif, fungsi validasi input, dan integrasi seluruh komponen program.
@@ -74,7 +76,7 @@ Koleksi (Abstract Class)
 └── Jurnal
 
 Perpustakaan
-└── mengelola list of Koleksi
+└── mengelola List[Koleksi]
 ```
 
 ---
@@ -111,22 +113,50 @@ Perpustakaan
 
 ---
 
+## Empat Pilar OOP
+
+### 1. Encapsulation
+Setiap atribut disimpan di dalam class masing-masing dan hanya bisa diakses melalui instance objek. Atribut `pengarang` hanya ada di `Buku`, `edisi` hanya ada di `Majalah`, `bidang` dan `impact` hanya ada di `Jurnal`.
+
+### 2. Inheritance (Pewarisan)
+`Buku`, `Majalah`, dan `Jurnal` mewarisi atribut dan method dasar dari `Koleksi` melalui `super().__init__()`. Tidak perlu menulis ulang atribut `kode`, `judul`, `tahun`, `penerbit` di setiap subclass.
+
+### 3. Polymorphism
+Method `tampilkan()` dan `get_jenis()` dimiliki semua class dengan nama yang sama, namun implementasinya berbeda-beda sesuai jenis koleksi. Class `Perpustakaan` memanggil `item.tampilkan()` tanpa perlu tahu jenis konkretnya.
+
+### 4. Abstraction
+Class `Koleksi` menggunakan `ABC` dan `@abstractmethod` sehingga tidak bisa diinstansiasi langsung. Subclass dipaksa mengimplementasikan `tampilkan()` dan `get_jenis()` sebelum bisa digunakan.
+
+---
+
 ## Penerapan Prinsip SOLID
 
-### Single Responsibility Principle (SRP)
-Setiap file dan class hanya memiliki satu tanggung jawab. `koleksi.py` hanya urusan struktur dasar koleksi, `perpustakaan.py` hanya urusan pengelolaan data, dan `main.py` hanya urusan alur program dan input user.
+### S — Single Responsibility Principle
+Setiap class hanya punya satu tanggung jawab. `Koleksi` hanya urusan kontrak/template, `Buku/Majalah/Jurnal` hanya urusan data masing-masing, `Perpustakaan` hanya urusan CRUD, dan `main.py` hanya urusan alur program dan input user.
 
-### Open/Closed Principle (OCP)
-Class `Perpustakaan` terbuka untuk perluasan tapi tertutup untuk modifikasi. Jika ingin menambah jenis koleksi baru seperti DVD Film, cukup buat subclass baru tanpa mengubah kode `Perpustakaan` sama sekali.
+### O — Open/Closed Principle
+Class `Perpustakaan` terbuka untuk perluasan tapi tertutup untuk modifikasi. Menambah jenis koleksi baru cukup dengan membuat subclass baru tanpa mengubah kode `Perpustakaan` sama sekali.
 
-### Liskov Substitution Principle (LSP)
-Objek `Buku`, `Majalah`, dan `Jurnal` dapat menggantikan objek `Koleksi` di mana saja tanpa merusak jalannya program. Semua subclass mengimplementasikan method `tampilkan()` dengan benar sesuai kontrak dari superclass.
+```python
+# Contoh: menambah Koran tanpa ubah kode lama
+class Koran(Koleksi):
+    def get_jenis(self): return "Koran"
+    def tampilkan(self): ...
+```
 
-### Interface Segregation Principle (ISP)
-Abstract method `tampilkan()` di class `Koleksi` berfungsi sebagai kontrak interface yang spesifik, memastikan setiap koleksi hanya diwajibkan mengimplementasikan method yang memang relevan dengan jenisnya.
+### L — Liskov Substitution Principle
+Objek `Buku`, `Majalah`, dan `Jurnal` dapat menggantikan objek `Koleksi` di mana saja tanpa merusak program. Semua subclass mengimplementasikan `tampilkan()` dan `get_jenis()` sesuai kontrak superclass.
 
-### Dependency Inversion Principle (DIP)
-Class `Perpustakaan` bergantung pada abstraksi `Koleksi`, bukan pada implementasi konkret seperti `Buku` atau `Majalah`. Hal ini membuat program lebih fleksibel dan mudah dikembangkan.
+### I — Interface Segregation Principle
+Abstract method di class `Koleksi` hanya berisi kontrak yang benar-benar dibutuhkan semua subclass yaitu `tampilkan()` dan `get_jenis()`. Tidak ada method yang terpaksa diimplementasikan tapi tidak terpakai.
+
+### D — Dependency Inversion Principle
+Class `Perpustakaan` bergantung pada abstraksi `Koleksi`, bukan pada implementasi konkret. Hal ini terlihat dari type hint `List[Koleksi]` dan parameter `koleksi: Koleksi` di method `tambah()`.
+
+```python
+self.data_koleksi: List[Koleksi] = []        # bergantung ke abstraksi
+def tambah(self, koleksi: Koleksi) -> bool:  # bukan ke Buku/Majalah/Jurnal
+```
 
 ---
 
@@ -134,7 +164,7 @@ Class `Perpustakaan` bergantung pada abstraksi `Koleksi`, bukan pada implementas
 
 1. Clone repositori ini
 ```
-git clone https://github.com/namaakun/KelasB_Kelompok4_TugasUTS.git
+git clone https://github.com/fajriyahyulia/KelasB_Kelompok4_TugasUTS.git
 ```
 
 2. Masuk ke folder repositori
@@ -145,6 +175,10 @@ cd KelasB_Kelompok4_TugasUTS
 3. Jalankan program
 ```
 python -m perpustakaan.main
+```
+atau di Windows:
+```
+py -m perpustakaan.main
 ```
 
 ---
@@ -178,8 +212,8 @@ Menu 4 - Keluar: program berhenti.
 
 ## Alur Kerja GitHub
 
-1. Fajriya membuat repositori dan push struktur awal ke branch `main`
+1. Fajriyah membuat repositori dan push struktur awal ke branch `main`
 2. Setiap anggota membuat branch masing-masing dari `main`
 3. Setiap anggota mengerjakan file sesuai pembagian di branch masing-masing
 4. Setelah selesai, masing-masing membuat pull request ke `main`
-5. Fajriya melakukan review dan merge semua branch ke `main`
+5. Fajriyah melakukan review dan merge semua branch ke `main`
