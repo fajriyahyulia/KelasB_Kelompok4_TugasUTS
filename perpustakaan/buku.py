@@ -7,9 +7,12 @@ class Buku(Koleksi):
     def __init__(self, kode, judul, tahun, pengarang, penerbit):
         super().__init__(kode, judul, tahun, penerbit)
         self.pengarang = pengarang
-    
+
+    def get_jenis(self):
+        return "Buku"
+
     def tampilkan(self):
-        print("=" * 40) 
+        print("=" * 40)
         print("Jenis    : Buku")
         self.tampilkan_dasar()
         print(f"Pengarang: {self.pengarang}")
