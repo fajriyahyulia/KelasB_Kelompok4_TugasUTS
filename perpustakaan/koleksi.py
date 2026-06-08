@@ -20,3 +20,7 @@ class Koleksi(ABC):
     @abstractmethod
     def tampilkan(self):
         pass
+
+    @abstractmethod
+    def get_jenis(self):
+        pass
