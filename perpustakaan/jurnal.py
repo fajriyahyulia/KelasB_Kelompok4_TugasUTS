@@ -1,6 +1,5 @@
 # dikerjakan oeh: Wijang Pratama Putra
 # username: pratamaputra-pemula
-
 from perpustakaan.koleksi import Koleksi
 
 class Jurnal(Koleksi):
