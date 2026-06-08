@@ -8,8 +8,12 @@ class Jurnal(Koleksi):
         super().__init__(kode, judul, tahun, penerbit)
         self.bidang = bidang
         self.impact = impact
-    
+
+    def get_jenis(self):
+        return "Jurnal"
+
     def tampilkan(self):
+        print("=" * 40)
         print("Jenis       : Jurnal")
         self.tampilkan_dasar()
         print(f"Bidang Studi: {self.bidang}")
