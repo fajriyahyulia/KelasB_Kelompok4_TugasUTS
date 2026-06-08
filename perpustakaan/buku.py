@@ -16,3 +16,5 @@ class Buku(Koleksi):
         print("Jenis    : Buku")
         self.tampilkan_dasar()
         print(f"Pengarang: {self.pengarang}")
+        
+
