@@ -9,6 +9,7 @@ class Buku(Koleksi):
         self.pengarang = pengarang
     
     def tampilkan(self):
+        print("=" * 40) 
         print("Jenis    : Buku")
         self.tampilkan_dasar()
         print(f"Pengarang: {self.pengarang}")
