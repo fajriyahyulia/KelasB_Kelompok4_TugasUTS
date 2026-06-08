@@ -1,6 +1,5 @@
-# dikerjakan oeh: Wijang
+# dikerjakan oleh: Wijang (K3525043)
 # username: pratamaputra-pemula
-
 from perpustakaan.koleksi import Koleksi
 
 class Jurnal(Koleksi):
@@ -8,8 +7,12 @@ class Jurnal(Koleksi):
         super().__init__(kode, judul, tahun, penerbit)
         self.bidang = bidang
         self.impact = impact
-    
+
+    def get_jenis(self):
+        return "Jurnal"
+
     def tampilkan(self):
+        print("=" * 40)
         print("Jenis       : Jurnal")
         self.tampilkan_dasar()
         print(f"Bidang Studi: {self.bidang}")
