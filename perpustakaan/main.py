@@ -1,10 +1,14 @@
 # Dikerjakan oleh: Fajriyah Yulia Az Zahra
 # NIM: K3525005
 # Username: fajriyahyulia
-from perpustakaan.perpustakaan import Perpustakaan
-from perpustakaan.buku import Buku
-from perpustakaan.majalah import Majalah
-from perpustakaan.jurnal import Jurnal
+
+# ==========================================================
+# PERBAIKAN IMPORT JIKA DOSEN/TIM MEMINTA DI DALAM SATU FOLDER
+# ==========================================================
+from perpustakaan import Perpustakaan
+from buku import Buku
+from majalah import Majalah
+from jurnal import Jurnal
 
 def garis():
     print("=" * 40)
@@ -39,7 +43,6 @@ def input_data_dasar(perpus: Perpustakaan):
     judul = input_tidak_kosong("Judul")
     tahun = input_int("Tahun")
     penerbit = input_tidak_kosong("Penerbit")
-    return kode, ...  # Hanya label, return tuple di bawah lebih aman:
     return kode, judul, tahun, penerbit
 
 def menu():
@@ -61,7 +64,6 @@ def main():
         menu()
         pilihan = input("Pilih menu: ")
 
-        # Menu 1-3 digabung dasar inputnya untuk menghemat baris & memenuhi OCP/SRP
         if pilihan in ["1", "2", "3"]:
             garis()
             if pilihan == "1":
@@ -72,15 +74,10 @@ def main():
                 print("[ TAMBAH DATA JURNAL ]")
             garis()
             
-            # Ambil input data yang selalu ada di setiap koleksi
-            kode, judul, tahun, penerbit = (
-                input_tidak_kosong("Kode"), 
-                input_tidak_kosong("Judul"), 
-                input_int("Tahun"), 
-                input_tidak_kosong("Penerbit")
-            )
+            # Memanggil fungsi helper input data dasar
+            kode, judul, tahun, penerbit = input_data_dasar(perpus)
             
-            # Cek spesifik atribut tambahan per jenis
+            # Cek spesifik atribut tambahan per jenis koleksi
             if pilihan == "1":
                 pengarang = input_tidak_kosong("Pengarang")
                 perpus.tambah(Buku(kode, judul, tahun, pengarang, penerbit))
@@ -102,14 +99,14 @@ def main():
             garis()
             kode = input_tidak_kosong("Masukkan kode yang mau dihapus")
             
-            # Pindahkan logika UI interaksi kesini (SRP)
+            # Logika UI interaksi hapus data (SRP)
             koleksi = perpus.cari_per_kode(kode)
-            if koleksi:
+            if static_koleksi := koleksi:
                 print("\nData ditemukan:")
-                koleksi.tampilkan()
+                static_koleksi.tampilkan()
                 konfirmasi = input("\nYakin mau hapus? (y/n): ").lower()
                 if konfirmasi == "y":
-                    perpus.hapus_objek(koleksi)
+                    perpus.hapus_objek(static_koleksi)
                 else:
                     print("❌ Dibatalkan!")
             else:
