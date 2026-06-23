@@ -1,24 +1,18 @@
 # dikerjakan oleh: Abid Satriyo Maulana (K3525045)
 # username: maurinho011
 from perpustakaan.koleksi import Koleksi
-from typing import List
+from typing import List, Optional
 
 class Perpustakaan:
     def __init__(self):
         self.data_koleksi: List[Koleksi] = []
 
-    # ========================
-    # VALIDASI
-    # ========================
     def kode_sudah_ada(self, kode: str) -> bool:
         for item in self.data_koleksi:
             if item.kode == kode:
                 return True
         return False
 
-    # ========================
-    # TAMBAH
-    # ========================
     def tambah(self, koleksi: Koleksi) -> bool:
         if self.kode_sudah_ada(koleksi.kode):
             print("❌ Kode sudah digunakan!")
@@ -27,25 +21,19 @@ class Perpustakaan:
         print("✔ Data berhasil ditambahkan!")
         return True
 
-    # ========================
-    # HAPUS
-    # ========================
-    def hapus(self, kode: str) -> None:
+    # Perbaikan SRP: Method ini sekarang mengembalikan objek jika ditemukan,
+    # proses hapus & konfirmasi dilakukan di main.py agar class ini bebas dari UI input()
+    def cari_per_kode(self, kode: str) -> Optional[Koleksi]:
         for item in self.data_koleksi:
             if item.kode == kode:
-                item.tampilkan()
-                konfirmasi = input("\nYakin mau hapus? (y/n): ").lower()
-                if konfirmasi == "y":
-                    self.data_koleksi.remove(item)
-                    print("✔ Data berhasil dihapus!")
-                else:
-                    print("❌ Dibatalkan!")
-                return
-        print("❌ Data tidak ditemukan!")
+                return item
+        return None
 
-    # ========================
-    # TAMPIL
-    # ========================
+    def hapus_objek(self, koleksi: Koleksi) -> None:
+        if koleksi in self.data_koleksi:
+            self.data_koleksi.remove(koleksi)
+            print("✔ Data berhasil dihapus!")
+
     def tampil_semua(self) -> None:
         if not self.data_koleksi:
             print("Belum ada data koleksi!")
