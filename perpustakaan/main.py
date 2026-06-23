@@ -70,6 +70,7 @@ def main():
                 print("[ TAMBAH DATA JURNAL ]")
             garis()
             
+            # Memanggil helper input data dasar
             kode, judul, tahun, penerbit = input_data_dasar(perpus)
             
             if pilihan == "1":
