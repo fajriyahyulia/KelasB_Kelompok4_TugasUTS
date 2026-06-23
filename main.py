@@ -1,17 +1,14 @@
 # Dikerjakan oleh: Fajriyah Yulia Az Zahra
 # NIM: K3525005
 # Username: fajriyahyulia
-from perpustakaan import Perpustakaan
-from buku import Buku
-from majalah import Majalah
-from jurnal import Jurnal
+from perpustakaan.perpustakaan import Perpustakaan
+from perpustakaan.buku import Buku
+from perpustakaan.majalah import Majalah
+from perpustakaan.jurnal import Jurnal
 
 def garis():
     print("=" * 40)
 
-# ==========================================
-# VALIDASI INPUT
-# ==========================================
 def input_tidak_kosong(label: str) -> str:
     while True:
         data = input(f"{label:<15} : ").strip()
@@ -26,9 +23,6 @@ def input_int(label: str) -> int:
             return int(data)
         print("❌ Harus berupa angka bulat!")
 
-# ==========================================
-# HELPER INPUT DATA (Memenuhi SRP)
-# ==========================================
 def input_data_dasar(perpus: Perpustakaan):
     while True:
         kode = input_tidak_kosong("Kode")
@@ -60,6 +54,7 @@ def main():
         menu()
         pilihan = input("Pilih menu: ")
 
+        # Menu 1-3 digabung dasar inputnya untuk menghemat baris & memenuhi OCP/SRP
         if pilihan in ["1", "2", "3"]:
             garis()
             if pilihan == "1":
@@ -70,9 +65,10 @@ def main():
                 print("[ TAMBAH DATA JURNAL ]")
             garis()
             
-            # Memanggil helper input data dasar
+            # Memanggil fungsi helper input data dasar agar kode bersih & efisien
             kode, judul, tahun, penerbit = input_data_dasar(perpus)
             
+            # Cek spesifik atribut tambahan per jenis koleksi
             if pilihan == "1":
                 pengarang = input_tidak_kosong("Pengarang")
                 perpus.tambah(Buku(kode, judul, tahun, pengarang, penerbit))
@@ -94,6 +90,7 @@ def main():
             garis()
             kode = input_tidak_kosong("Masukkan kode yang mau dihapus")
             
+            # Logika UI interaksi hapus data (SRP)
             koleksi = perpus.cari_per_kode(kode)
             if static_koleksi := koleksi:
                 print("\nData ditemukan:")
@@ -109,6 +106,7 @@ def main():
         elif pilihan == "0":
             print("Terima kasih! Sampai jumpa.")
             break
+
         else:
             print("❌ Pilihan tidak valid!")
 
