@@ -9,9 +9,6 @@ from perpustakaan.jurnal import Jurnal
 def garis():
     print("=" * 40)
 
-# ==========================================
-# VALIDASI INPUT (Mengembalikan Fitur UX)
-# ==========================================
 def input_tidak_kosong(label: str) -> str:
     while True:
         data = input(f"{label:<15} : ").strip()
@@ -26,9 +23,6 @@ def input_int(label: str) -> int:
             return int(data)
         print("❌ Harus berupa angka bulat!")
 
-# ==========================================
-# HELPER INPUT DATA (Memenuhi SRP pada UI)
-# ==========================================
 def input_data_dasar(perpus: Perpustakaan):
     while True:
         kode = input_tidak_kosong("Kode")
@@ -39,7 +33,6 @@ def input_data_dasar(perpus: Perpustakaan):
     judul = input_tidak_kosong("Judul")
     tahun = input_int("Tahun")
     penerbit = input_tidak_kosong("Penerbit")
-    return kode, ...  # Hanya label, return tuple di bawah lebih aman:
     return kode, judul, tahun, penerbit
 
 def menu():
@@ -61,7 +54,6 @@ def main():
         menu()
         pilihan = input("Pilih menu: ")
 
-        # Menu 1-3 digabung dasar inputnya untuk menghemat baris & memenuhi OCP/SRP
         if pilihan in ["1", "2", "3"]:
             garis()
             if pilihan == "1":
@@ -72,13 +64,8 @@ def main():
                 print("[ TAMBAH DATA JURNAL ]")
             garis()
             
-            # Ambil input data yang selalu ada di setiap koleksi
-            kode, judul, tahun, penerbit = (
-                input_tidak_kosong("Kode"), 
-                input_tidak_kosong("Judul"), 
-                input_int("Tahun"), 
-                input_tidak_kosong("Penerbit")
-            )
+            # Memanggil fungsi helper input data dasar (Lebih rapi & menghemat baris)
+            kode, judul, tahun, penerbit = input_data_dasar(perpus)
             
             # Cek spesifik atribut tambahan per jenis
             if pilihan == "1":
@@ -102,7 +89,7 @@ def main():
             garis()
             kode = input_tidak_kosong("Masukkan kode yang mau dihapus")
             
-            # Pindahkan logika UI interaksi kesini (SRP)
+            # Logika interaksi UI hapus
             koleksi = perpus.cari_per_kode(kode)
             if koleksi:
                 print("\nData ditemukan:")
